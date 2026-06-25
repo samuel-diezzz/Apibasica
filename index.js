@@ -1,4 +1,9 @@
+import 'dotenv/config'; // Si usas ES Modules (import)
+// O si usas CommonJS (require), descomenta la siguiente línea:
+// require('dotenv').config();
 
+// Ahora lees la URI de manera segura desde las variables de entorno
+const URI = process.env.MONGO_URI;
 const express = require('express');
 const mongoose = require('mongoose');
 const clienteController = require('./controllers/cliente.controller');
@@ -12,7 +17,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 function conectar(){
-    const URI = 'mongodb+srv://Diez:uVCpt0PuIh7obozi@diez3194107.exunevs.mongodb.net/prueba107';
     mongoose.connect(URI)
         .then(() => console.log(" Conectado a MongoDB Atlas con éxito"))
         .catch(err => console.error(" Error al conectar a MongoDB:", err));
